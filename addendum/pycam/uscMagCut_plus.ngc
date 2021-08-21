@@ -1,0 +1,106 @@
+%
+;Copyright © 1988-2021 by Abbott Analytical Products. All Rights Reserved.
+; 210821 Prepared for run on LinuxCNC in simulation mode
+; 171108 Last know modification
+
+G40	; disable tool radius compensation
+G49	; disable tool length compensation
+G80	; cancel modal motion
+
+; set 54 axis
+G54	; select coordinate system 1
+G10 L2 P1 X0 Y0 Z0; 170618 zero
+; set set axis for G55 coordinates. 
+; This is work materil's location placement 
+; within PCNC 770 work envelope
+G55	; select coordinate system 1
+;171108_tr change to P2/P1 
+(;original G10 L2 P1 X .1552 Y -4.126 Z -11.97  ;170610 offset)
+G10 L2 P1 X .1552 Y 4.126 Z 11.97
+
+G90	; disable incremental moves
+G20	; force empiral over metric
+F300	; set feedrate
+S1000	; set spindle speed
+G61	; exact path mode
+M3	; start spindle
+G04 P3.0	; wait for 3.0 seconds
+G0 X0.283465 Y0.267717 Z1.000000
+F100	; set feedrate
+G1 Z0.039764
+F300	; set feedrate
+G1 X1.771653   Y0.370079;
+G1  X0.283465  Y0.472441;
+G1  X1.771653  Y0.574803;
+G1  X0.283465  Y0.677165;
+G1  X1.771653  Y0.779527;
+G1  X0.283465  Y0.881890;
+G1  X1.771653  Y0.984252;
+G1  X0.283465  Y1.086614;
+G1  X1.771653  Y1.188976;
+G1  X0.283465  Y1.291338;
+G1  X1.771653 F100	; set feedrate
+G1 Z0.000000  F300	; set feedrate
+G1 X0.283465  Y1.188976;
+G1  X1.771653  Y1.086614;
+G1  X0.283465  Y0.984252; 
+G1  X1.771653   Y0.881890;
+G1  X0.283465  Y0.779527;
+G1  X1.771653  Y0.677165;
+G1  X0.283465  Y0.574803;
+G1  X1.771653  Y0.472441;
+G1  X0.283465  Y0.370079;
+G1  X1.771653  Y0.267717;
+G1  X0.283465  M5	; stop spindle
+G0 Z1.000000 F300	; set feedrate
+S1000	; set spindle speed
+G61	; exact path mode
+M3	; start spindle
+G04 P3.0	; wait for 3.0 seconds
+G0 X1.771653 Y0.425197  F100	; set feedrate
+G1 Z0.039370 F300	; set feedrate
+G1 X2.196850
+  Y0.533183
+G1  X1.771653
+  Y0.641170
+G1  X2.196850
+  Y0.749156
+G1  X1.771653
+  Y0.857143
+G1  X2.196850
+  Y0.965129
+G1  X1.771653
+  Y1.073116
+G1  X2.196850
+  Y1.181102
+G1  X1.771653  F100	; set feedrate
+G1 Z0.000000  F300	; set feedrate
+G1 X2.196850  Y1.073116;
+G1  X1.771653  Y0.965129;
+G1  X2.196850  Y0.857143;
+G1  X1.771653  Y0.749156;
+G1  X2.196850  Y0.641170;
+G1  X1.771653  Y0.533183;
+G1  X2.196850  Y0.425197;
+G1  X1.771653  M5	; stop spindle
+G0 Z1.000000  F300	; set feedrate
+S1000	; set spindle speed
+G61	; exact path mode
+M3	; start spindle
+G04 P3.0	; wait for 3.0 seconds
+G0 X2.196850 Y0.818898  F100	; set feedrate
+G1 Z0.039764   F300	; set feedrate
+G1 X2.480315  Y0.913386;
+G1  X2.196850  Y1.007874;
+G1  X2.480315  Y1.102362;
+G1  X2.196850  Y1.196850;
+G1  X2.480315  F100	; set feedrate
+G1 Z0.000000  F300	; set feedrate
+G1 X2.196850  Y1.102362;
+G1  X2.480315  Y1.007874;
+G1  X2.196850  Y0.913386;
+G1  X2.480315  Y0.818898;
+G1  X2.196850 M5	; stop spindle
+G0 Z1.000000
+M2	; end program
+%
